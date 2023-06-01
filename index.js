@@ -15,8 +15,8 @@ function createUser(id) {
     "imageUrl": faker.image.urlLoremFlickr({ category: 'nature' }),
     "result": faker.helpers.arrayElement(["healthy", "disease-1", "disease-2", "disease-3", "disease-4"]),
     "inferenceTime": faker.number.int({ min: 2_000, max: 10_000 }),
-    "createdAt": 1685572000 - id * 3600,
-    "detectedAt": 1685572000 - id * 3600,
+    "createdAt": (1685572000 - id * 3600) * 1000,
+    "detectedAt": (1685572000 - id * 3600) * 1000,
   }
 }
 
@@ -35,6 +35,7 @@ app.get('/megatron', (req, res) => {
 
   // Pagination
   if (start) {
+    console.log(start)
     list = list.skipUntil(item => {
       return item.id == start
     })
