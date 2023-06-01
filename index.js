@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 80
 
 const { faker } = require('@faker-js/faker');
 const collect = require('collect.js');
@@ -30,13 +30,13 @@ app.get('/', (req, res) => {
 
 app.get('/megatron', (req, res) => {
   // Get data and query parameters
-  var { start, perPage, startDate, endDate, labels } = req.query
+  var { after, perPage, startDate, endDate, labels } = req.query
   var list = data
 
   // Pagination
-  if (start) {
+  if (after) {
     list = list.skipUntil(item => {
-      return item.id == start
+      return item.id == after
     })
     list = list.skip(1)
   }
