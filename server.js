@@ -51,7 +51,8 @@ app.get('/megatron', (req, res) => {
   list = list.take(Math.max(10, Math.min(perPage ?? 10, 50)))
 
   // Send data
-  res.send(list.toArray())
+  res.setHeader('Content-Type', 'application/json');
+  res.json(list.toArray())
 })
 
 
