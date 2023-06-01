@@ -24,6 +24,10 @@ const data = collect(Array.from({ length: 1000 }, (v, i) => i + 1).map(i => crea
 
 app.use(express.urlencoded())
 
+app.get('/', (req, res) => {
+  res.send("Hello, world!")
+})
+
 app.get('/megatron', (req, res) => {
   // Get data and query parameters
   var { start, perPage, startDate, endDate, labels } = req.query
