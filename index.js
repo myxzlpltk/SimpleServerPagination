@@ -59,6 +59,20 @@ app.get('/megatron', (req, res) => {
   res.json(list.toArray())
 })
 
+app.get('/freaky', (req, res) => {
+  // Get data and query parameters
+  var { id } = req.query
+  var list = data
+
+  // Find data
+  try {
+    var single = list.firstOrFail(item => item.id == id)
+    res.json(single)
+  } catch (err) {
+    res.status(404).send({message: "Not found"})
+  }
+})
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
