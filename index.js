@@ -12,7 +12,7 @@ function createUser(id) {
     "_seed": id,
     "id": faker.string.uuid(),
     "email": faker.internet.email().toLowerCase(),
-    "imageUrl": faker.image.urlLoremFlickr({ category: 'nature' }),
+    "fileURL": faker.image.urlLoremFlickr({ category: 'nature' }),
     "isDetected": true,
     "label": faker.helpers.arrayElement(["healthy", "disease-1", "disease-2", "disease-3", "disease-4"]),
     "inferenceTime": faker.number.int({ min: 2_000, max: 10_000 }),
