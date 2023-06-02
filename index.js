@@ -10,7 +10,7 @@ function createUser(id) {
 
   return {
     "_seed": id,
-    "id": faker.string.uuid(),
+    "filename": faker.string.uuid(),
     "email": faker.internet.email().toLowerCase(),
     "fileURL": faker.image.urlLoremFlickr({ category: 'nature' }),
     "isDetected": true,
@@ -37,7 +37,7 @@ app.get('/megatron', (req, res) => {
   // Pagination
   if (after) {
     list = list.skipUntil(item => {
-      return item.id == after
+      return item.filename == after
     })
     list = list.skip(1)
   }
