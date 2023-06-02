@@ -49,7 +49,7 @@ app.get('/megatron', (req, res) => {
 
   // Filter label
   if (labels) {
-    list = list.filter(value => labels.includes(value.result))
+    list = list.filter(value => labels.includes(value.label))
   }
 
   // Limit
