@@ -67,7 +67,7 @@ app.get('/freaky', (req, res) => {
 
   // Find data
   try {
-    var single = list.firstOrFail(item => item.id == id)
+    var single = list.firstOrFail(item => item.filename == id)
     res.json(single)
   } catch (err) {
     res.status(404).send({message: "Not found"})
