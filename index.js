@@ -8,16 +8,18 @@ const collect = require('collect.js');
 function createUser(id) {
   faker.seed(42 + id);
 
+  let isDetected = faker.datatype.boolean(0.8)
+
   return {
     "_seed": id,
     "filename": faker.string.uuid(),
     "email": faker.internet.email().toLowerCase(),
     "fileURL": faker.image.urlLoremFlickr({ category: 'nature' }),
-    "isDetected": true,
-    "label": faker.helpers.arrayElement(["Healthy", "Phoma", "Miner", "Rust"]),
-    "inferenceTime": faker.number.int({ min: 2_000, max: 10_000 }),
+    "isDetected": isDetected,
+    "label": isDetected ? faker.helpers.arrayElement(["Healthy", "Phoma", "Miner", "Rust"]) : "",
+    "inferenceTime": isDetected ? faker.number.int({ min: 2_000, max: 10_000 }) : 0,
     "createdAt": (1685572000 - id * 3600) * 1000,
-    "detectedAt": (1685572000 - id * 3600) * 1000,
+    "detectedAt": isDetected ? (1685572000 - id * 3600) * 1000 : 0,
   }
 }
 
@@ -49,7 +51,7 @@ app.get('/megatron', (req, res) => {
 
   // Filter label
   if (labels) {
-    list = list.filter(value => labels.includes(value.label))
+    list = list.filter(value => !value.isDetected || labels.includes(value.label))
   }
 
   // Limit
