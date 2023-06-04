@@ -14,7 +14,7 @@ function createUser(id) {
     "email": faker.internet.email().toLowerCase(),
     "fileURL": faker.image.urlLoremFlickr({ category: 'nature' }),
     "isDetected": true,
-    "label": faker.helpers.arrayElement(["healthy", "disease-1", "disease-2", "disease-3", "disease-4"]),
+    "label": faker.helpers.arrayElement(["Healthy", "Phoma", "Miner", "Rust"]),
     "inferenceTime": faker.number.int({ min: 2_000, max: 10_000 }),
     "createdAt": (1685572000 - id * 3600) * 1000,
     "detectedAt": (1685572000 - id * 3600) * 1000,
