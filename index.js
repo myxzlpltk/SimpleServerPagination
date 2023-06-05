@@ -18,6 +18,7 @@ function createUser(id) {
     "isDetected": isDetected,
     "label": isDetected ? faker.helpers.arrayElement(["Healthy", "Phoma", "Miner", "Rust"]) : "",
     "inferenceTime": isDetected ? faker.number.int({ min: 2_000, max: 10_000 }) : 0,
+    "confidence": isDetected ? faker.datatype.float({ min: 0.5, max: 1, precision: 0.1 }) : 0,
     "createdAt": (1685572000 - id * 3600) * 1000,
     "detectedAt": isDetected ? (1685572000 - id * 3600) * 1000 : 0,
   }
